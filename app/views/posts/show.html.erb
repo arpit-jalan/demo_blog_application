@@ -2,18 +2,17 @@
  
 <p>
   <h3>
-  <div class="post_title">
-  <%= @post.title %>
-  </div>
+    <div class="post_title">
+      <%= @post.title %>
+    </div>
   </h3>
   <div class="post_body">
-  <%= @post.body %>
+    <%= @post.body %>
   </div>
 
-  <% user = User.find(@post.user_id)
-  %>
+  <% user = User.find(@post.user_id)%>
   <div class="post_owner">
-  <p>Submitted by:</p>
-  <%= user.name%>
+    <p>Submitted by:</p>
+    <%= user.name%>
   </div>
 </p>

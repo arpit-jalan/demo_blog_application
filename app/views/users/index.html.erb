@@ -10,8 +10,16 @@
 <% @users.each do |user| %>
   <tr>
     <td><%= user.name %></td>
-    <td><%= link_to 'Show', user %> |</td>
+    <% if (current_user) %>
+      <td><%= link_to 'Show', user %> |</td>
+    <% end %>
     <td><%= link_to 'View Posts', user_posts_path(user.id) %></td>
   </tr>
 <% end %>
+
 </table>
+
+<br><br><br>
+<% if (!current_user) %>
+  <p>Please signin/signup to view the profiles as well</p>
+<% end %>

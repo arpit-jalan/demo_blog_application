@@ -1,0 +1,32 @@
+<p class="notice"><%= notice %></p>
+ 
+<p>
+  <b>User Name:</b>
+  <%= @user.name %>
+  <br><br>
+  <b>Role:</b>
+  <%= @user.roles %>
+</p>
+
+<p>
+  <b>First Name:</b>
+  <%= @user.first_name %>
+  <br><br>
+  <b>Last Name:</b>
+  <%= @user.last_name %>
+</p>
+
+
+<p>
+	<% if (current_user.present? && (current_user.id == @user.id || current_user.roles == "admin")) %>
+    <td><%= link_to 'Edit', edit_user_path(@user) %> | </td>
+
+    <td><%= link_to 'Destroy', @user, confirm: 'Are you sure?', method: :delete %> | </td>
+	<%= link_to 'Create Post', new_user_post_path(current_user.id) %> | 
+	<%= link_to 'My Posts', user_posts_path(current_user.id) %>
+
+	<% else %>
+	<%= link_to 'View Posts', user_posts_path(@user.id) %>
+
+    <% end %>
+</p>

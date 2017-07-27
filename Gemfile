@@ -10,7 +10,7 @@ gem 'hirb'
 gem 'devise'
 gem 'strong_parameters'
 gem 'cancan'
-gem 'activerecord-mysql2-adapter'
+gem 'mysql2', '~> 0.3.10'
 gem 'yaml_db'
 # Gems used only for assets and not required
 # in production environments by default.

@@ -18,12 +18,10 @@
     <%= post_form.label :body %><br />
     <%= post_form.text_area :body %>
   </div>
-  <% if @user_id.present? %>
     <div class="field" id = "hidden_field_user_id">
       <%= post_form.label :user_id %><br />
       <%= post_form.text_field :user_id, :value => @user_id, :readonly => true%>
     </div>
-  <% end %>
   <br>
   <div class="actions">
     <%= post_form.submit %>

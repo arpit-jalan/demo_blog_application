@@ -1,26 +1,32 @@
+<% if (@posts.count > 0) %>
+  <h1>Listing posts</h1>
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>User ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
 
-<h1>Listing posts</h1>
+  <% @posts.each do |post| %>
+    <tr>
+      <td><%= post.title %></td>
+      <td><%= post.user_id %></td>
+      <td><%= link_to 'Show', user_post_path(post.user_id, post.id) %></td>
+      <% if (current_user.present? && (post.user_id == current_user.id || current_user.roles == "admin")) %>
+      <td><%= link_to 'Edit', edit_user_post_path(post.user_id, post.id) %></td>
+      <td><%= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </table>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>User ID</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @posts.each do |post| %>
-  <tr>
-    <td><%= post.title %></td>
-    <td><%= post.user_id %></td>
-    <td><%= link_to 'Show', user_post_path(post.user_id, post.id) %></td>
-    <% if (current_user.present? && (post.user_id == current_user.id || current_user.roles == "admin")) %>
-    <td><%= link_to 'Edit', edit_user_post_path(post.user_id, post.id) %></td>
-    <td><%= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete %></td>
-    <% end %>
-  </tr>
+  <br />
+<% else %>
+  <p>
+    <strong>
+      There are no posts of this user.
+    </strong>
+  </p>
 <% end %>
-</table>
-
-<br />

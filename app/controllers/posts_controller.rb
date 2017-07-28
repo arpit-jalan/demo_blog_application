@@ -13,7 +13,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    puts params
   	@post = Post.find(params[:id])
   	respond_to do |format|
 		format.html
@@ -46,9 +45,10 @@ class PostsController < ApplicationController
   	@post = Post.new(params[:post])
   	respond_to do |format|
   		if @post.save
-        	format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        	format.html { redirect_to @post}
         	format.json { render json: @post, status: :created, location: @post }
       	else
+          @user_id = current_user.id
         	format.html { render action: "new" }
         	format.json { render json: @post.errors, status: :unprocessable_entity }
       	end

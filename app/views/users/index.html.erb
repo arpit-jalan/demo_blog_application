@@ -1,25 +1,21 @@
+<%= stylesheet_link_tag "users_show.css" %>
 <h1>Users</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<div class="row">
 <% @users.each do |user| %>
-  <tr>
-    <td><%= user.name %></td>
+<div class="card col-md-4">
+  <div class="container">
+    <h4><b><%= user.name %></b></h4>
     <% if (current_user) %>
-      <td><%= link_to 'Show', user %> |</td>
+      <button type="button" class="btn btn-success"><%= link_to 'Show', user, class: "a_tags" %></button>
     <% end %>
-    <td><%= link_to 'View Posts', user_posts_path(user.id) %></td>
-  </tr>
+    <button type="button" class="btn btn-warning"><%= link_to 'View Posts', user_posts_path(user.id), class: "a_tags" %></button>
+  </div>
+
+</div>
 <% end %>
-
-</table>
-
+</div>
 <br><br><br>
 <% if (!current_user) %>
   <p>Please signin/signup to view the profiles as well</p>
 <% end %>
+

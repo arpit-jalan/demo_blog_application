@@ -11,6 +11,7 @@
  *= require_self
  *= require_tree .
  */
+@import "bootstrap";
 
 body {
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
@@ -106,9 +107,13 @@ caption {
     padding-right: 1em;
     font-size: large;
     font-family: inherit;
+    margin-right: 10px;
+    margin-top: 10px;
 }
 .home_header {
     padding-left: 1em;
+    margin-left: 10px;
+    margin-top: 10px;
     float: left;
     font-size: larger;
     font-family: inherit;
@@ -124,4 +129,11 @@ caption {
 
 #hidden_field_user_id {
     display: none;
+}
+
+.header_group {
+    background-color: gray;
+}
+.header_a_tag {
+    text-decoration: none;
 }

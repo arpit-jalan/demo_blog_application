@@ -1,1 +1,31 @@
-<% require 'assets/stylesheets/application.css' %>
+<%= stylesheet_link_tag 'application.css' %>
+<%= stylesheet_link_tag 'home.css.scss' %>
+<%= javascript_include_tag "application.js" %>
+
+<% if (@posts.count > 0) %>
+  <div class="row" onload="alerting()">
+  <% @posts.each do |post| %>
+    <div class="card col-md-4" onload = "ranCol()" >
+    <div class="post_container">
+      <h4><strong><%= post.title %></strong></h4>
+      <%#= link_to 'Show', user_post_path(post.user_id, post.id) %>
+      <p class: "post_body" >
+      	<%= post.body.truncate(20) %>
+      </p>
+      <button type="button" class="btn btn-warning"><%= link_to 'Read more', post_path(post.id), class: "a_tags"%></button>
+      <% if (current_user.present? && (post.user_id == current_user.id || current_user.roles == "admin")) %>
+      <%#= link_to 'Edit', edit_user_post_path(post.user_id, post.id) %>
+      <%#= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete %>
+      <% end %>
+      </div>
+      </div>
+  <% end %>
+
+  <%= will_paginate @posts, class: "apple_pagination" %>
+<% else %>
+  <p>
+    <strong>
+      There are no posts of this user.
+    </strong>
+  </p>
+ <% end %>

@@ -30,8 +30,11 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.3)
     bcrypt (3.1.11)
+    bootstrap-sass (3.1.1.1)
+      sass (~> 3.2)
     builder (3.0.4)
     cancan (1.6.10)
+    client_side_validations (3.2.8)
     coderay (1.1.1)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -133,6 +136,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     warden (1.2.7)
       rack (>= 1.0)
+    will_paginate (3.1.6)
     yaml_db (0.6.0)
       rails (>= 3.0, < 5.2)
       rake (>= 0.8.7)
@@ -141,7 +145,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass (~> 3.1.1.0)
   cancan
+  client_side_validations
   coffee-rails (~> 3.2.1)
   devise
   hirb
@@ -153,6 +159,7 @@ DEPENDENCIES
   sqlite3
   strong_parameters
   uglifier (>= 1.0.3)
+  will_paginate (~> 3.1.0)
   yaml_db
 
 BUNDLED WITH

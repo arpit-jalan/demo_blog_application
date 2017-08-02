@@ -1,47 +1,43 @@
 <!DOCTYPE html>
 <html>
 	<head>
-  		<title>AttendanceManagementSystem</title>
-  		<%= stylesheet_link_tag    "application", :media => "all" %>
+		<title>AttendanceManagementSystem</title>
+		<%= stylesheet_link_tag    "application.css.scss", :media => "all" %>
 		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
 	</head>
 	<body>
-		 
-		<div class="home_header" id = "inline">
-		<%= link_to 'Home', root_path %>
-		</div>
-		
-		<div class="account_header" id = "inline">
-		
-		<% if (current_user) %>
-			<nav>
-				<%= link_to 'My Profile', user_path(current_user) %> | 
-				<%= link_to 'Sign Out', destroy_user_session_path, method: :delete  %>
-			</nav>
-			
-		<% else %>
-			<nav>
-				<%= link_to 'Sign In', new_user_session_path %> | 
-				<%= link_to 'Sign Up', new_user_registration_path %>
-			</nav>
-		<% end %>
+		<div class="header_group">
+			<div class="home_header" id = "inline">
+				<%= link_to 'Blogger', root_path %>
+			</div>
+
+			<div class="account_header" id = "inline">
+
+				<% if (current_user) %>
+					<nav>
+						<%= link_to 'Create Post', new_user_post_path(current_user.id), class: "header_a_tag" %> | 
+						<%= link_to 'My Profile', user_path(current_user), class: "header_a_tag" %> | 
+						<%= link_to 'Sign Out', destroy_user_session_path, method: :delete  %>
+					</nav>
+
+				<% else %>
+					<nav>
+						<%= link_to 'Sign In', new_user_session_path, class: "header_a_tag" %> | 
+						<%= link_to 'Sign Up', new_user_registration_path, class: "header_a_tag" %>
+					</nav>
+				<% end %>
+			</div>
 		</div>
 
 		<br><br><br>
 
-		 <%- flash.each do |name, msg| -%>
-    	 	<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-  		 <%- end -%> 
+		<%- flash.each do |name, msg| -%>
+			<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+		<%- end -%> 
 
 		<div class="content">
-		<%= yield %>
-		</div>
-		
-		<div class="home_header">
-			<% if (current_user.present?) %>
-				<%= link_to 'Create Post', new_user_post_path(current_user.id) %>
-			<% end %>
+			<%= yield %>
 		</div>
 
 	</body>

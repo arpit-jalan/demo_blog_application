@@ -38,6 +38,7 @@ class PostsController < ApplicationController
   def edit
     user = User.find(params[:user_id])
     authorize! :edit, user
+    @user_id = params[:user_id]
     @post = Post.find(params[:id])
   end
 
@@ -56,13 +57,10 @@ class PostsController < ApplicationController
   end
 
   def update
-
   	@post = Post.find(params[:id])
-
-
   	respond_to do |format|
   		if @post.update_attributes(params[:post])
-  			format.html {redirect_to @post, notice: 'Updated successfully.'}
+  			format.html {redirect_to @post}
   			format.json {head :no_content}
   		else
   			format.html { render action: "edit" }
@@ -73,17 +71,12 @@ class PostsController < ApplicationController
 
   def destroy
 
-
-    user = User.find(params[:user_id])
-    authorize! :destroy, user
-
+    authorize! :destroy, current_user
   	@post = Post.find(params[:id])
-
-
   	@post.destroy
 
   	respond_to do |format|
-    	format.html { redirect_to users_url }
+    	format.html { redirect_to user_posts_path(current_user.id) }
     	format.json { head :no_content }
     end
   end

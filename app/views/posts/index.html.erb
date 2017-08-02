@@ -1,26 +1,18 @@
 <% if (@posts.count > 0) %>
   <h1>Listing posts</h1>
-  <table>
-    <tr>
-      <th>Title</th>
-      <th>User ID</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
 
   <% @posts.each do |post| %>
     <tr>
-      <td><%= post.title %></td>
-      <td><%= post.user_id %></td>
-      <td><%= link_to 'Show', user_post_path(post.user_id, post.id) %></td>
+      <strong><h4><%= post.title %></h4></strong>
+      <p>
+        <%= post.body.truncate(100) %>
+      </p>
+      <button type="button" class="btn btn-warning"><%= link_to 'Show', user_post_path(post.user_id, post.id),class: "a_tags" %></button>
       <% if (current_user.present? && (post.user_id == current_user.id || current_user.roles == "admin")) %>
-      <td><%= link_to 'Edit', edit_user_post_path(post.user_id, post.id) %></td>
-      <td><%= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete %></td>
+      <button type="button" class="btn btn-primary"><%= link_to 'Edit', edit_user_post_path(post.user_id, post.id),class: "a_tags" %></button>
+      <button type="button" class="btn btn-danger"><%= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete, class: "a_tags" %></button>
       <% end %>
-    </tr>
   <% end %>
-  </table>
 
   <br />
 <% else %>

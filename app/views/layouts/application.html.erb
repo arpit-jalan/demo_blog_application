@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>AttendanceManagementSystem</title>
+		<title>Blog Spot</title>
 		<%= stylesheet_link_tag    "application.css.scss", :media => "all" %>
 		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
@@ -9,24 +9,26 @@
 	<body>
 		<div class="header_group">
 			<div class="home_header" id = "inline">
-				<%= link_to 'Blogger', root_path %>
+				<%= link_to 'Blog Spot', root_path %>
 			</div>
 
-			<div class="account_header" id = "inline">
 
+			<div class="account_header" id = "inline">
+			<nav>
 				<% if (current_user) %>
-					<nav>
-						<%= link_to 'Create Post', new_user_post_path(current_user.id), class: "header_a_tag" %> | 
-						<%= link_to 'My Profile', user_path(current_user), class: "header_a_tag" %> | 
-						<%= link_to 'Sign Out', destroy_user_session_path, method: :delete  %>
-					</nav>
+					<%= link_to 'All Users', users_path, class: "header_a_tag" %> | 
+					<%= link_to 'Create Post', new_user_post_path(current_user.id), class: "header_a_tag" %> | 
+					<%= link_to 'My Profile', user_path(current_user), class: "header_a_tag" %> | 
+					<%= link_to 'Sign Out', destroy_user_session_path, method: :delete  %>
+					
 
 				<% else %>
-					<nav>
+
 						<%= link_to 'Sign In', new_user_session_path, class: "header_a_tag" %> | 
 						<%= link_to 'Sign Up', new_user_registration_path, class: "header_a_tag" %>
-					</nav>
+					
 				<% end %>
+				</nav>
 			</div>
 		</div>
 
@@ -37,8 +39,15 @@
 		<%- end -%> 
 
 		<div class="content">
+		<% if (!current_user) %>
+			<p>
+				<em>
+					P.S. You need to sign in/sign up in order to create a post.
+				</em>
+			</p>
+		<% end %>
 			<%= yield %>
 		</div>
-
+		
 	</body>
 </html>

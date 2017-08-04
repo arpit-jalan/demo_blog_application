@@ -3,20 +3,27 @@
 <%= javascript_include_tag "application.js" %>
 
 <% if (@posts.count > 0) %>
-  <div class="row" onload="alerting()">
+  <div class="row">
   <% @posts.each do |post| %>
-    <div class="card col-md-4" onload = "ranCol()" >
+    <div class="card col-md-4">
     <div class="post_container">
       <h4><strong><%= post.title %></strong></h4>
       <%#= link_to 'Show', user_post_path(post.user_id, post.id) %>
-      <p class: "post_body" >
-      	<%= post.body.truncate(20) %>
+      <p>
+      	<%= post.body.truncate(44) %>
       </p>
+      
       <button type="button" class="btn btn-warning"><%= link_to 'Read more', post_path(post.id), class: "a_tags"%></button>
       <% if (current_user.present? && (post.user_id == current_user.id || current_user.roles == "admin")) %>
       <%#= link_to 'Edit', edit_user_post_path(post.user_id, post.id) %>
       <%#= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete %>
       <% end %>
+      <br>
+      <p id = "post_details_teaser">
+      Submitted by: <a href = "<%= user_path(post.user_id) %>"><%= User.find(post.user_id).name %></a>
+      <br>
+      Last updated: <%= post.updated_at.strftime("%d/%m/%y") %>
+      </p>
       </div>
       </div>
   <% end %>

@@ -70,13 +70,12 @@ class PostsController < ApplicationController
   end
 
   def destroy
-
     authorize! :destroy, current_user
   	@post = Post.find(params[:id])
   	@post.destroy
 
   	respond_to do |format|
-    	format.html { redirect_to user_posts_path(current_user.id) }
+    	format.html { redirect_to user_posts_path(@post.user_id) }
     	format.json { head :no_content }
     end
   end

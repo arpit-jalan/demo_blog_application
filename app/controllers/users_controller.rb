@@ -1,9 +1,10 @@
+require 'will_paginate/array'
 class UsersController < ApplicationController
 
-  before_filter :authenticate_user!, only: [:show]
+  before_filter :authenticate_user!
 
   def index
-		@users = User.all
+		@users = User.paginate(:page => params[:page], :per_page => 6)
 
 		respond_to do |format|
 			format.html

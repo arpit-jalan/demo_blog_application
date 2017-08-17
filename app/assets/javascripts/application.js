@@ -15,6 +15,7 @@
 //= require_tree .
 //= require rails.validations
 //= require bootstrap.min
+//= require tinymce
 function ran_col() { //function name
     var color = '#'; // hexadecimal starting symbol
     var letters = ['000000','FF0000','00FF00','0000FF','FFFF00','00FFFF','FF00FF','C0C0C0']; //Set your colors here

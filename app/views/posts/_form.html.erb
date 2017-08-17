@@ -5,7 +5,8 @@
   </div>
   <div class="field">
     <%= post_form.label :body %><br />
-    <%= post_form.text_area :body %>
+    <%= post_form.text_area :body, :class => "tinymce", :rows => 20, :cols => 110 %>
+    <%= tinymce %>
   </div>
     <div class="field" id = "hidden_field_user_id">
       <%= post_form.label :user_id %><br />

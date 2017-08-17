@@ -27,6 +27,7 @@ gem 'redis-store', '1.1.7'
 gem 'redis-namespace', '1.5.2'
 gem 'hiredis', '0.6.0'
 gem 'mailcatcher'
+gem 'tinymce-rails'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

@@ -14,11 +14,7 @@
       <%= @user.last_name %>
       <br>
       <p>
-
-
-      <!-- change this <p> tag -->
-      
-        Hi, I am <%= @user.roles %>. Do check out my posts.
+      <%= @user.status.html_safe %>
       </p>
     </p>
   </div>

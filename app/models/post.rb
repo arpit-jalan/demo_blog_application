@@ -4,7 +4,8 @@ class Post < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
+
   validates :title, presence: true, length: {minimum: 20}
   validates :body, presence: true, length: {minimum: 20}
   attr_accessible :String, :body, :title, :user_id

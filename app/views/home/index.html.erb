@@ -10,7 +10,7 @@
       <h4><strong><%= post.title %></strong></h4>
       <%#= link_to 'Show', user_post_path(post.user_id, post.id) %>
       <p>
-      	<%= post.body.truncate(44) %>
+        <%=  sanitize(post.body, :tags=>[]).truncate(44, :separator => " ").html_safe %>
       </p>
       
       <button type="button" class="btn btn-warning"><%= link_to 'Read more', post_path(post.id), class: "a_tags"%></button>

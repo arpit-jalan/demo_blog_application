@@ -15,6 +15,18 @@ gem 'yaml_db'
 gem 'bootstrap-sass', '~> 3.1.1.0'
 gem 'will_paginate', '~> 3.1.0'
 gem 'client_side_validations'
+gem 'elasticsearch', '1.0.18'
+gem 'elasticsearch-api', '1.0.18'
+gem 'elasticsearch-transport', '1.0.18'
+gem 'elasticsearch-rails', '0.1.8'
+gem 'elasticsearch-model', '0.1.8'
+gem 'sidekiq', '~> 4.2.1'
+gem 'redis', '3.2.1'
+gem 'redis-rails', '3.2.4'
+gem 'redis-store', '1.1.7'
+gem 'redis-namespace', '1.5.2'
+gem 'hiredis', '0.6.0'
+gem 'mailcatcher'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

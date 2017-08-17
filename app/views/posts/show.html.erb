@@ -10,9 +10,8 @@
     <%= @post.body %>
   </div>
 
-  <% user = User.find(@post.user_id)%>
   <div class="post_owner">
     <p>Submitted by:</p>
-    <%= user.name%>
+    <%= @username%>
   </div>
 </p>

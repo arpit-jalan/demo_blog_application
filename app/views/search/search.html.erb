@@ -1,0 +1,23 @@
+<h2>Posts Search</h2>
+
+<%#= form_for search_path, method: :get do |f| %>
+  <!-- <p>
+    <%#= f.label "Search for" %>
+    <%#= text_field_tag :q, params[:q] %>
+    <%#= submit_tag "Go", name: nil %>
+  </p> -->
+<%# end %>
+
+<div class="content">
+  <% @posts.each do |post| %>
+      <h3>
+        <%= link_to post.title, controller: "posts", action: "show", id: post._id%>
+      </h3>
+
+      Submitted by: <em><a href = "<%= user_path(post.user_id) %>"><%= User.find(post.user_id).name %></a></em>
+
+      <p>
+      <%= post.body.truncate(100) %>
+      </p>
+  <% end %>
+</div>

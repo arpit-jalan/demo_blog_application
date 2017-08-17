@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 
   include ActiveModel::ForbiddenAttributesProtection
 
-  protect_from_forgery
+  #protect_from_forgery
   before_filter :configure_permitted_parameters, :if => :devise_controller?
 	
   protected

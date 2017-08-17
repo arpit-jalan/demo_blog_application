@@ -8,27 +8,36 @@
 	</head>
 	<body>
 		<div class="header_group">
-			<div class="home_header" id = "inline">
+			<div class="home_header col-md-2" id = "inline">
 				<%= link_to 'Blog Spot', root_path %>
 			</div>
-
-
-			<div class="account_header" id = "inline">
-			<nav>
-				<% if (current_user) %>
-					<%= link_to 'All Users', users_path, class: "header_a_tag" %> | 
-					<%= link_to 'Create Post', new_user_post_path(current_user.id), class: "header_a_tag" %> | 
-					<%= link_to 'My Profile', user_path(current_user), class: "header_a_tag" %> | 
-					<%= link_to 'Sign Out', destroy_user_session_path, method: :delete  %>
-					
-
-				<% else %>
-
-						<%= link_to 'Sign In', new_user_session_path, class: "header_a_tag" %> | 
-						<%= link_to 'Sign Up', new_user_registration_path, class: "header_a_tag" %>
-					
+			<div class="home_header col-md-5" id="inline">
+				<%= form_tag search_path, :method => :get do |f| %>
+					<%= text_field_tag :q, params[:q], class: "search_bar", placeholder: "Search..." %>
 				<% end %>
-				</nav>
+			</div>
+			<div class="account_header col-md-4" id = "inline" >
+				<div class="all_users"  id = "inline">
+				<%= link_to 'All Users', users_path, class: "header_a_tag" %>
+				</div>
+			<!-- <nav class = "nav-tab"> -->
+				<!-- <span class="input-group-addon">
+    				<span class="glyphicon glyphicon-check"></span>
+  				</span> -->
+  				
+				<% if (current_user) %>
+				<div class="profile" id = "inline">
+					<%= link_to image_tag("ic_profile.png", class: "profile_button"), user_path(current_user)  %>
+					</div>
+					<div class="sig_out" id = "inline">
+					<%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
+					</div>
+				<% else %>
+					<div class="sig_out">
+						<%= link_to 'Sign In', new_user_session_path, class: "btn btn-primary" %>
+					</div>
+				<% end %>
+				<!-- </nav> -->
 			</div>
 		</div>
 
@@ -39,15 +48,14 @@
 		<%- end -%> 
 
 		<div class="content">
-		<% if (!current_user) %>
-			<p>
-				<em>
-					P.S. You need to sign in/sign up in order to create a post.
-				</em>
-			</p>
-		<% end %>
 			<%= yield %>
 		</div>
-		
+		<button class = "btn btn-warning bmd-btn-fab position_fixed">
+		<% if (current_user) %>
+			<%= link_to image_tag("ic_edit.png", class: "post_create_button"), new_user_post_path(current_user.id) %>
+		<% else %>
+			<%= link_to image_tag("ic_edit.png", class: "post_create_button"), new_user_session_path %>
+		<% end %>
+</button>
 	</body>
 </html>

@@ -14,6 +14,7 @@ class PostsController < ApplicationController
 
   def show
   	@post = Post.find(params[:id])
+    @username = User.find(@post.user_id).name
   	respond_to do |format|
 		format.html
 		format.json {render json: @post}
@@ -46,6 +47,7 @@ class PostsController < ApplicationController
   	@post = Post.new(params[:post])
   	respond_to do |format|
   		if @post.save
+          PostMailer.post_create(@post).deliver
         	format.html { redirect_to @post}
         	format.json { render json: @post, status: :created, location: @post }
       	else
@@ -60,6 +62,7 @@ class PostsController < ApplicationController
   	@post = Post.find(params[:id])
   	respond_to do |format|
   		if @post.update_attributes(params[:post])
+        PostMailer.post_update(@post).deliver
   			format.html {redirect_to @post}
   			format.json {head :no_content}
   		else

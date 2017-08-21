@@ -15,7 +15,39 @@
         <button type="button" class="btn btn-warning"><%= link_to 'Edit', edit_user_path(@user),class: "a_tags" %></button>
         <button type="button" class="btn btn-danger"><%= link_to 'Delete Account', @user, confirm: 'Are you sure?', method: :delete,class: "a_tags" %></button>
       <% end %>
-      <button type="button" class="btn btn-success"><%= link_to 'View Posts', user_posts_path(@user.id),class: "a_tags" %></button>
     </div>
   </div>
+</div>
+<br><br><br>
+<div class="user_posts">
+  <% if (@posts.count > 0) %>
+    <div class="row">
+      <h4><em>Posts from the user</em></h4>
+      <% @posts.each do |post| %>
+        <div class="post_card col-md-3">
+          <% unless (post.image_file_name.blank?) %>
+            <%= image_tag(post.image.url(:med), class: "post_image_container") %>
+          <% end %>
+          <div class="post_container">
+            <h4><strong><%= post.title %></strong></h4>
+            <p>
+              <%= sanitize(post.body, :tags=>[]).truncate(44, :separator => " ").html_safe %>
+            </p>
+
+            <button type="button" class="btn btn-warning"><%= link_to 'Read more', post_path(post.id), class: "a_tags"%></button>
+
+            <p id = "post_owner">
+              Submitted by: <a href = "<%= user_path(post.user_id) %>"><%= get_username(post.user_id) %></a>
+              <br>
+              Last updated: <%= post.updated_at.strftime("%d/%m/%y") %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  <% else %>
+    <p><strong>There are no posts of this user.</strong></p>
+
+  <% end %>
 </div>

@@ -1,70 +1,67 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Blog Spot</title>
-		<%= javascript_include_tag "jquery.js" %>
-		<%= javascript_include_tag "application.js" %>
-		<%= stylesheet_link_tag "bootstrap.min.css" %>
-		<%= javascript_include_tag "bootstrap.min.js" %>
-		<%= stylesheet_link_tag    "application.css.scss" %>
-		<script type="text/javascript">
-			
-		</script>
-	</head>
-	<body>
-		<nav class="navbar navbar-inverse">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<%= link_to 'Blog Spot', root_path, class: "navbar-brand"%>
-				</div>
+  <head>
+    <title>Blog Spot</title>
+    <%= javascript_include_tag "jquery.js" %>
+    <%= javascript_include_tag "application.js" %>
+    <%= stylesheet_link_tag "bootstrap.min.css" %>
+    <%= javascript_include_tag "bootstrap.min.js" %>
+    <%= stylesheet_link_tag    "application.css.scss" %>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <%= link_to 'Blog Spot', root_path, class: "navbar-brand"%>
+        </div>
 
-				<ul class="nav navbar-nav navbar-right">
-					<%= form_tag search_path, :method => :get, class: "navbar-form navbar-left" do |f| %>
-						<div class="input-group">
-							<%= text_field_tag :q, "", class: "form-control", placeholder: "Search" %>
-							<div class="input-group-btn">
-								<button class="btn btn-default" type="submit">
-									<i class="glyphicon glyphicon-search"></i>
-								</button>
-							</div>
-						</div>
-					<% end %>
-					<li><%= link_to 'All Users', users_path %></li>
-					<% if (current_user) %>
-						<li>
-							<%= link_to("Write a Post", new_user_post_path(current_user.id)) %>
-						</li>
-						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#">My Profile
-							<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><%= link_to 'View Profile', user_path(current_user) %></li>
-								<li><%= link_to 'My Posts', user_posts_path(current_user)  %></li>
-							</ul>
-						</li>
-						<li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-					<% else %>
-						<li><%= link_to 'Write a Post', new_user_session_path %></li>
-						<li><%= link_to 'Sign Up', new_user_registration_path %></li>
-						<li><%= link_to 'Log In', new_user_session_path %></li>
-				<% end %>
-				</ul>
-			</div>
-		</nav>
+        <ul class="nav navbar-nav navbar-right">
+          <%= form_tag search_path, :method => :get, class: "navbar-form navbar-left" do |f| %>
+            <div class="input-group">
+              <%= text_field_tag :q, "", class: "form-control", placeholder: "Search" %>
+              <div class="input-group-btn">
+                <button class="btn btn-default" type="submit">
+                  <i class="glyphicon glyphicon-search"></i>
+                </button>
+              </div>
+            </div>
+          <% end %>
+          <li><%#= link_to 'All Users', users_path %></li>
+          <% if (current_user) %>
+            <li>
+              <%= link_to("Write a Post", new_user_post_path(current_user.id)) %>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Profile
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to 'View Profile', user_path(current_user) %></li>
+                <li><%= link_to 'My Posts', user_posts_path(current_user)  %></li>
+              </ul>
+            </li>
+            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to 'Write a Post', new_user_session_path %></li>
+            <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+            <li><%= link_to 'Log In', new_user_session_path %></li>
+        <% end %>
+        </ul>
+      </div>
+    </nav>
 
-		<%- flash.each do |name, msg| -%>
-			<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-		<%- end -%> 
+    <%- flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+    <%- end -%> 
 
-		<div class="content">
-			<%= yield %>
-		</div>
-		<button class = "btn btn-warning bmd-btn-fab position_fixed">
-		<% if (current_user) %>
-			<%= link_to image_tag("ic_edit.png", class: "post_create_button"), new_user_post_path(current_user.id) %>
-		<% else %>
-			<%= link_to image_tag("ic_edit.png", class: "post_create_button"), new_user_session_path %>
-		<% end %>
-		</button>
-	</body>
+    <div class="content">
+      <%= yield %>
+    </div>
+    <button class = "btn btn-warning bmd-btn-fab position_fixed">
+    <% if (current_user) %>
+      <%= link_to image_tag("ic_edit.png", class: "post_create_button"), new_user_post_path(current_user.id) %>
+    <% else %>
+      <%= link_to image_tag("ic_edit.png", class: "post_create_button"), new_user_session_path %>
+    <% end %>
+    </button>
+  </body>
 </html>

@@ -11,10 +11,10 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
-  validates :password, confirmation: true
+  validates :password, presence: true, confirmation: true, :on => :create
   has_many :posts, dependent: :destroy
   validates_format_of :first_name, :last_name, { :with => /^[a-z]+$/i, :message => "Can only contain letters" }
   validates_format_of :name, { :with => /^[a-zA-Z]+[0-9]*$/i, :message => "Should contain letters" }
-  validates_format_of :password, { :with => /^[a-z]+[A-Z]+[0-9]+[#!]+/i, :message => "Should contain atleast one small, capital, digit and a special character(!, #)"}
+  validates_format_of :password, { :with => /^[a-z]+[A-Z]+[0-9]+[#!]+/i, :message => "Should contain atleast one small, capital, digit and a special character(!, #)", :on => :create}
   has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "400x200" }
 end

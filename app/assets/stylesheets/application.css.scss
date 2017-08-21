@@ -90,14 +90,15 @@ div.field_with_errors {
 }
 
 .position_fixed {
-    right:0; 
-    bottom:0;
-    position: fixed; 
-    margin-bottom: 30px;
-    margin-right: 30px;
+  right:0; 
+  bottom:20px;
+  position: fixed; 
+  margin-bottom: 30px;
+  margin-right: 30px;
+  border-radius: 50%;
 }
 
 .post_create_button {
-    width: 50px;
-    heigth: 50px;
+  width: 50px;
+  heigth: 50px;
 }

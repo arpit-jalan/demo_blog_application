@@ -3,12 +3,9 @@ class SearchController < ApplicationController
 		@posts = []
 		unless params[:q].blank?
 		 @response = Post.search params[:q]
-		 @response.records.map { |post| 
-		 	@posts << post
-		  }
-		  
+		 @response.records.map { |post| @posts << post } 
 		 @unique_posts = @posts.uniq!
-		 @posts = @unique_posts if !@unique_posts.nil?
+		 @posts = @unique_posts if !@unique_posts.nil? 
 		end
 
 		@query = params[:q]

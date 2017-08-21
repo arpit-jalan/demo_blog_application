@@ -4,11 +4,13 @@ class Post < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
-  belongs_to :user, dependent: :destroy
+  belongs_to :user
 
   validates :title, presence: true, length: {minimum: 20}
   validates :body, presence: true, length: {minimum: 20}
-  attr_accessible :String, :body, :title, :user_id
+  attr_accessible :String, :body, :title, :user_id, :image
+
+  has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "400x200" }
 
   after_save {
   	EsIndexWorker.perform_async(:index, self.id)

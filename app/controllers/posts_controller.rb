@@ -15,20 +15,19 @@ class PostsController < ApplicationController
   def show
   	@post = Post.find(params[:id])
     @username = User.find(@post.user_id).name
+
   	respond_to do |format|
-		format.html
-		format.json {render json: @post}
+			format.html
+			format.json {render json: @post}
 	  end
   end
 
   def new
-
     user = User.find(params[:user_id])
     authorize! :new, user
 
   	@post = Post.new
     @user_id = params[:user_id]
-
 
   	respond_to do |format|
   		format.html
@@ -47,14 +46,14 @@ class PostsController < ApplicationController
   	@post = Post.new(params[:post])
   	respond_to do |format|
   		if @post.save
-          PostMailer.post_create(@post).deliver
-        	format.html { redirect_to @post}
-        	format.json { render json: @post, status: :created, location: @post }
-      	else
-          @user_id = current_user.id
-        	format.html { render action: "new" }
-        	format.json { render json: @post.errors, status: :unprocessable_entity }
-      	end
+        PostMailer.post_create(@post).deliver
+      	format.html { redirect_to @post}
+      	format.json { render json: @post, status: :created, location: @post }
+    	else
+        @user_id = current_user.id
+      	format.html { render action: "new" }
+      	format.json { render json: @post.errors, status: :unprocessable_entity }
+    	end
   	end
   end
 
@@ -65,10 +64,10 @@ class PostsController < ApplicationController
         PostMailer.post_update(@post).deliver
   			format.html {redirect_to @post}
   			format.json {head :no_content}
-  		else
-  			format.html { render action: "edit" }
-        	format.json { render json: @post.errors, status: :unprocessable_entity }
-      	end	
+			else
+				format.html { render action: "edit" }
+	      format.json { render json: @post.errors, status: :unprocessable_entity }
+	    end	
   	end
   end
 

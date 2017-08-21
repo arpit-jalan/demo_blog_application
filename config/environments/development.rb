@@ -37,7 +37,17 @@ AttendanceManagementSystem::Application.configure do
 
   config.action_mailer.perform_deliveries = true
 
+  Paperclip.options[:command_path] = "/usr/bin/convert"
+
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { :host => 'localhost', :port => 1025 }
-  config.action_mailer.default_url_options = { host: 'localhost:2000' }
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+   :address              => "smtp.gmail.com",
+   :port                 => 587,
+   :user_name            => "noreplyblogspot88@gmail.com",
+   :password             => "noreply88",
+   :authentication       => "plain",
+  :enable_starttls_auto => true
+  }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 2000 }
 end

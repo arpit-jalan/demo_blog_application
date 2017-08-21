@@ -1,18 +1,22 @@
-<%= stylesheet_link_tag "users_show.css" %>
 <div class="row">
-	<% @users.each do |user| %>
-		<div class="card2 col-md-4">
-  			<div class="container">
-    			<h4><b><%= user.name %></b></h4>
-    			<% if (current_user) %>
-      				<button type="button" class="btn btn-success"><%= link_to 'Show', user, class: "a_tags" %></button>
-    			<% end %>
-    			<button type="button" class="btn btn-warning"><%= link_to 'View Posts', user_posts_path(user.id), class: "a_tags" %></button>
-  			</div>
-
-		</div>
-	<% end %>
- 	<%= will_paginate @users, class: "apple_pagination" %>
+  <% @users.each do |user| %>
+    <div class="user_card card2 col-md-3">
+      <%= image_tag(user.image.url(:med), class: "user_profile_image") %>
+      <div class="user_profile_container">
+        <h4><b><%= user.name %></b></h4>
+        <div class="links">
+          <% if (current_user) %>
+            <button type="button" class="btn btn-success"><%= link_to 'Show Profile', user, class: "a_tags" %></button>
+            
+          <% end %>
+          <button type="button" class="btn btn-warning"><%= link_to 'View Posts', user_posts_path(user.id), class: "a_tags" %></button>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= will_paginate @users, class: "apple_pagination" %>
 </div>
+
+
 
 

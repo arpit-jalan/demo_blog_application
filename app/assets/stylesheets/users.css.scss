@@ -1,0 +1,95 @@
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card2:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 16px 16px;
+}
+
+
+.card2 {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  margin-top: 10px;
+  max-width: 320px;
+  max-height: 150px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.container {
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  display: inline-block;
+}
+
+.footer {
+  padding: 1em;
+  position: absolute;
+  margin-bottom: 2em;
+}
+
+.a_tags {
+  color: white;
+}
+
+.a_tags:hover {
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+}
+
+.user_card_show {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+}
+
+.user_card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+  margin-top: 1em;
+  margin-right: 1em;
+  margin-left: 1em;
+}
+
+.user_container {
+  padding: 0 16px;
+}
+
+.user_profile_container {
+  padding: 0 16px;
+}
+
+.username {
+    color: grey;
+    font-size: 18px;
+}
+
+.user_image_container {
+  
+}
+
+.user_profile_image {
+  border-radius: 50%;
+  float: left;
+}
+
+.links {
+  padding: 1em;
+  float: right;
+  margin-bottom: 2em;
+}

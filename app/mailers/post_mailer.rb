@@ -1,5 +1,5 @@
 class PostMailer < ActionMailer::Base
-	default from: "no-reply@blogspot.com"
+	default from: "noreplyblogspot88@gmail.com"
 
   def post_create(post)
   	@post = post

@@ -18,8 +18,8 @@ body {
   font-size: 15px;
   background: #f2f5f8;
   font-weight: 300;
-
 }
+
 a {
   text-decoration: none;
 }
@@ -81,48 +81,12 @@ caption {
     text-align: -webkit-center
 }
 
-.account_header {
-    float: right;
-    font-size: large;
-    font-family: inherit;
-    margin-top: 10px;
-    right: 0;
-    margin-bottom: 30px;
-}
-.home_header {
-    padding-left: 1em;
-    margin-left: 10px;
-    margin-top: 10px;
-    float: left;
-    font-size: larger;
-    font-family: inherit;
-}
-
-#inline {
-    display: inline-block;
-}
-
 .content {
     padding: 2em;
 }
 
-#hidden_field_user_id {
-    display: none;
-}
-
-.header_group {
-    background-color: gray;
-}
-.header_a_tag {
-    text-decoration: none;
-}
-
 div.field_with_errors {
   display: inline;
-}
-
-.search_bar {
-    width: 110%;
 }
 
 .position_fixed {
@@ -136,31 +100,4 @@ div.field_with_errors {
 .post_create_button {
     width: 50px;
     heigth: 50px;
-}
-
-.profile_button {
-    width: 40px;
-    height: 40px;
-}
-
-.nav-tab {
-    float: right;
-    right:0; 
-    margin-right: 30px;
-}
-
-.sig_out {
-    right: 0;
-    margin-right: 10px;
-    margin-left: 10px;
-    float: inherit;
-}
-
-.profile {
-    margin-right: 10px;
-    margin-left: 110px;
-}
-
-.all_users {
-    margin-left: 40px;
 }

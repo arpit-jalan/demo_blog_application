@@ -1,38 +1,31 @@
-<%= stylesheet_link_tag 'application.css' %>
-<%= stylesheet_link_tag 'home.css.scss' %>
-<%= javascript_include_tag "application.js" %>
-
 <% if (@posts.count > 0) %>
   <div class="row">
-  <% @posts.each do |post| %>
-    <div class="card col-md-4">
-    <div class="post_container">
-      <h4><strong><%= post.title %></strong></h4>
-      <%#= link_to 'Show', user_post_path(post.user_id, post.id) %>
-      <p>
-        <%=  sanitize(post.body, :tags=>[]).truncate(44, :separator => " ").html_safe %>
-      </p>
-      
-      <button type="button" class="btn btn-warning"><%= link_to 'Read more', post_path(post.id), class: "a_tags"%></button>
-      <% if (current_user.present? && (post.user_id == current_user.id || current_user.roles == "admin")) %>
-      <%#= link_to 'Edit', edit_user_post_path(post.user_id, post.id) %>
-      <%#= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete %>
-      <% end %>
-      <br>
-      <p id = "post_details_teaser">
-      Submitted by: <a href = "<%= user_path(post.user_id) %>"><%= User.find(post.user_id).name %></a>
-      <br>
-      Last updated: <%= post.updated_at.strftime("%d/%m/%y") %>
-      </p>
+    <% @posts.each do |post| %>
+      <div class="post_card col-md-3">
+        <% unless (post.image_file_name.blank?) %>
+          <%= image_tag(post.image.url(:med), class: "post_image_container") %>
+        <% end %>
+        <div class="post_container">
+          <h4><strong><%= post.title %></strong></h4>
+          <p>
+            <%= sanitize(post.body, :tags=>[]).truncate(44, :separator => " ").html_safe %>
+          </p>
+
+          <button type="button" class="btn btn-warning"><%= link_to 'Read more', post_path(post.id), class: "a_tags"%></button>
+
+          <p id = "post_owner">
+            Submitted by: <a href = "<%= user_path(post.user_id) %>"><%= get_username(post.user_id) %></a>
+            <br>
+            Last updated: <%= post.updated_at.strftime("%d/%m/%y") %>
+          </p>
+        </div>
       </div>
-      </div>
-  <% end %>
+    <% end %>
+  </div>
 
   <%= will_paginate @posts, class: "apple_pagination" %>
+
 <% else %>
-  <p>
-    <strong>
-      There are no posts of this user.
-    </strong>
-  </p>
- <% end %>
+  <p><strong>There are no posts of this user.</strong></p>
+
+<% end %>

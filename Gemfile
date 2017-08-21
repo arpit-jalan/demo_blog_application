@@ -28,6 +28,10 @@ gem 'redis-namespace', '1.5.2'
 gem 'hiredis', '0.6.0'
 gem 'mailcatcher'
 gem 'tinymce-rails'
+
+gem 'carrierwave'
+gem 'paperclip', '3.5.4'
+gem 'mini_magick'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

@@ -1,29 +1,21 @@
-<%= stylesheet_link_tag "users_show" %>
 <p class="notice"><%= notice %></p>
 
-<div class="w3-card-4">
-  <header class="w3-container w3-blue">
-    <h1><%= @user.name %></h1>
-    
-  </header>
-
-  <div class="w3-container">
+<div class="user_card_show">
+  <%= image_tag(@user.image.url(:med), class: "user_image_container") %>
+  <div class="user_container">
+    <h1><%= "#{@user.first_name} #{@user.last_name}" %></h1>
+    <p class="username"><em>Username: </em><%= @user.name %></p>
     <p>
-    <label for="first_name"> Name: </label>
-      <%= @user.first_name %>
-      <%= @user.last_name %>
-      <br>
-      <p>
-      <%= @user.status.html_safe %>
-      </p>
+      <% unless (@user.status.blank?) %>
+        <%= @user.status.html_safe %>
+      <% end %>
     </p>
+    <div class="footer">
+      <% if (current_user.present? && (current_user.id == @user.id || current_user.roles == "admin")) %>
+        <button type="button" class="btn btn-warning"><%= link_to 'Edit', edit_user_path(@user),class: "a_tags" %></button>
+        <button type="button" class="btn btn-danger"><%= link_to 'Delete Account', @user, confirm: 'Are you sure?', method: :delete,class: "a_tags" %></button>
+      <% end %>
+      <button type="button" class="btn btn-success"><%= link_to 'View Posts', user_posts_path(@user.id),class: "a_tags" %></button>
+    </div>
   </div>
-
 </div>
-  <footer class="footer">
-    <% if (current_user.present? && (current_user.id == @user.id || current_user.roles == "admin")) %>
-      <button type="button" class="btn btn-warning"><%= link_to 'Edit', edit_user_path(@user),class: "a_tags" %></button>
-      <button type="button" class="btn btn-danger"><%= link_to 'Destroy', @user, confirm: 'Are you sure?', method: :delete,class: "a_tags" %></button>
-    <% end %>
-    <button type="button" class="btn btn-success"><%= link_to 'View Posts', user_posts_path(@user.id),class: "a_tags" %></button>
-  </footer>

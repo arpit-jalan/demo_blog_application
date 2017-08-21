@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!, :except => [:index]
 
   def index
-		@users = User.paginate(:page => params[:page], :per_page => 6)
+		@users = User.paginate(:page => params[:page], :per_page => 12)
 
 		respond_to do |format|
 			format.html
@@ -14,7 +14,6 @@ class UsersController < ApplicationController
 
 	def show
     @user = User.find(params[:id])
-    
     authorize! :show, @user
 
 		respond_to do |format|
@@ -41,7 +40,6 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-
         UserMailer.welcome_email(@user).deliver_now
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
@@ -62,9 +60,9 @@ class UsersController < ApplicationController
 				format.json {head :no_content}
 			else
 				format.html { render action: "edit" }
-      		format.json { render json: @user.errors, status: :unprocessable_entity }
-    		end
+      	format.json { render json: @user.errors, status: :unprocessable_entity }
     	end
+    end
 	end
 
 	def destroy

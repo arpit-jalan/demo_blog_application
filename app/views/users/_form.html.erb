@@ -1,32 +1,41 @@
 <%= form_for(@user) do |user_form| %>
 	<% if @user.errors.any? %>
-  		<div id="errorExplanation">
-    		<h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-    		<ul>
-    			<% @user.errors.full_messages.each do |msg| %>
-      				<li><%= msg %></li>
-    			<% end %>
-    		</ul>
-  		</div>
-  	<% end %>
+		<div id="errorExplanation">
+			<h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+			<ul>
+				<% @user.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
 
-  	<div class="field">
-  		<%= user_form.label :first_name %><br>
-  		<%= user_form.text_field :first_name %><br>
-  	</div>
-    <div class="field">
-      <%= user_form.label :last_name %><br>
-      <%= user_form.text_field :last_name %><br>
-    </div>
-    <div class="field">
-      <%= user_form.label :status %><br>
-      <%= user_form.text_area :status, :class => "tinymce", :rows => 20, :cols => 40 %>
-      <%= tinymce %>
-      <br>
-    </div>
+	<div class="field">
+		<%= user_form.label :first_name %><br>
+		<%= user_form.text_field :first_name %><br>
+	</div>
 
-  	<br>
-  	<div class="actions">
-  		<%= user_form.submit %>
-  	</div>
- <%end %>
+	<div class="field">
+		<%= user_form.label :last_name %><br>
+		<%= user_form.text_field :last_name %><br>
+	</div>
+
+	<div class="field">
+		<%= user_form.label :status %><br>
+		<%= user_form.text_area :status, :class => "tinymce", :rows => 20, :cols => 40 %>
+		<%= tinymce %>
+		<br>
+	</div>
+
+	<br>
+
+	<div class="field">
+		<%= user_form.label :image %><br>
+		<%= user_form.file_field :image %>
+	</div>
+	
+	<div class="actions">
+		<%= user_form.submit %>
+	</div>
+
+<%end %>
